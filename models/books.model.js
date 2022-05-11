@@ -18,6 +18,11 @@ module.exports = (sequelize, types) => {
                 type: types.CHAR(60),
                 allowNull: false,
             },
+
+            sell_count: {
+                type: types.INTEGER,
+                default: 0
+            },
         },
         {
             charset: 'utf8',

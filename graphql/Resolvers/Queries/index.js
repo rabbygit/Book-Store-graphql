@@ -1,3 +1,4 @@
-const { getBooks } = require('./getBooks')
+const { books } = require('./books')
+const { authors } = require('./author')
 
-module.exports = { getBooks }
+module.exports = { books, authors }
