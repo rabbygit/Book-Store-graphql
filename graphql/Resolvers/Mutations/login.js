@@ -1,13 +1,12 @@
-const { db } = require("../../../services");
 const { signToken, verifyPassword } = require("../../../utils");
 
 const login = async (parent, args, context) => {
     const { password, username } = args.input;
 
-    const result = await db.users.findOne({
+    const result = await context.prisma.user.findFirst({
         where: {
-            username
-        }
+            username: username,
+        },
     })
 
     if (!result) throw new Error("Invalid credential");

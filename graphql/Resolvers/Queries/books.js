@@ -1,7 +1,5 @@
-const { db } = require("../../../services")
-
 const books = async (parent, args, context) => {
-    return await db.books.findAll()
+    return await context.prisma.book.findMany()
 }
 
 module.exports = { books }

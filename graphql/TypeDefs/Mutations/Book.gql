@@ -1,14 +1,15 @@
 type Book {
-    id: ID
+    id: Int
     title: String!
     description: String
-    author_id: ID
+    author_id: Int
 }
 
 input BookInput {
     title: String!
     description: String
-    author_id: ID!
+    author_id: Int!
+    sell_count: Int
 }
 
 type Mutation {

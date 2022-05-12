@@ -1,9 +1,9 @@
 type Book {
-    id: ID
+    id: Int
     title: String!
     description: String
     sell_count: Int
-    author_id: ID
+    author_id: Int
 }
 
 type Query {

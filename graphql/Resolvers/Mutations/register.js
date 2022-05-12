@@ -1,4 +1,3 @@
-const { db } = require("../../../services")
 const { hashPassword, signToken } = require("../../../utils")
 
 const register = async (parent, args, context) => {
@@ -6,7 +5,9 @@ const register = async (parent, args, context) => {
 
     const hashed = await hashPassword(password)
 
-    const result = await db.users.create({ username, password: hashed })
+    const result = await context.prisma.user.create({
+        data: { username, password: hashed }
+    })
 
     return {
         id: result.id,
