@@ -2,4 +2,14 @@ const books = async (parent, args, context) => {
     return await context.prisma.book.findMany()
 }
 
-module.exports = { books }
+const booksForUser = async (parent, args, context) => {
+    return await context.prisma.user.findUnique({
+        where: { id: parent.id || undefined },
+    })
+        .books()
+}
+
+module.exports = {
+    books,
+    booksForUser
+}
