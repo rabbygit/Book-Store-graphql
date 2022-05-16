@@ -1,10 +1,11 @@
 const { addBook, register, login } = require('./Mutations')
-const { books, authors, booksForUser } = require('./Queries')
+const { books, authors, booksForUser, author } = require('./Queries')
 
 const resolvers = {
     Query: {
         books: books,
         authors: authors,
+        author: author,
     },
     Mutation: {
         addBook: addBook,

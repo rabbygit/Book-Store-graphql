@@ -1,4 +1,4 @@
 const { books, booksForUser } = require('./books')
-const { authors } = require('./author')
+const { authors, author } = require('./author')
 
-module.exports = { books, authors, booksForUser }
+module.exports = { books, authors, booksForUser, author }
