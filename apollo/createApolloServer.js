@@ -3,6 +3,8 @@ const { ApolloServer } = require('apollo-server-express')
 const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 const { applyMiddleware } = require('graphql-middleware')
 const { PrismaClient } = require("@prisma/client")
+const responseCachePlugin = require('apollo-server-plugin-response-cache');
+
 
 const createApolloServer = (middlewares, { app, schema }) => {
     const schemaWithPermissions = applyMiddleware(schema, ...middlewares)
@@ -16,7 +18,8 @@ const createApolloServer = (middlewares, { app, schema }) => {
             res,
             prisma
         }),
-        plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+        csrfPrevention: true,
+        plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), responseCachePlugin.default()],
     })
 }
 

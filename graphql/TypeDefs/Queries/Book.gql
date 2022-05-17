@@ -1,4 +1,4 @@
-type Book {
+type Book @cacheControl(maxAge: 60) {
     id: Int
     title: String!
     description: String
