@@ -19,6 +19,9 @@ const createApolloServer = (middlewares, { app, schema }) => {
             prisma
         }),
         csrfPrevention: true,
+        persistedQueries: {
+            ttl: 600, // in seconds
+        },
         plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), responseCachePlugin.default()],
     })
 }
