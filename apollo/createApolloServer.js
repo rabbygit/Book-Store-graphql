@@ -4,6 +4,7 @@ const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core')
 const { applyMiddleware } = require('graphql-middleware')
 const { PrismaClient } = require("@prisma/client")
 const responseCachePlugin = require('apollo-server-plugin-response-cache');
+const { logger } = require('./logger')
 
 
 const createApolloServer = (middlewares, { app, schema }) => {
@@ -22,7 +23,11 @@ const createApolloServer = (middlewares, { app, schema }) => {
         persistedQueries: {
             ttl: 600, // in seconds
         },
-        plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), responseCachePlugin.default()],
+        plugins: [
+            ApolloServerPluginDrainHttpServer({ httpServer }),
+            responseCachePlugin.default(),
+            logger
+        ],
     })
 }
 
