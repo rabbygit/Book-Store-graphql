@@ -10,7 +10,7 @@ directive @cacheControl(
 ) on FIELD_DEFINITION | OBJECT | INTERFACE | UNION
 
 type Author @cacheControl(maxAge: 60){
-  id: Int 
+  id: Int! 
   username: String
   books: [Book]
 }
