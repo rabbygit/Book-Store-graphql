@@ -24,10 +24,17 @@ const createApolloServer = (middlewares, { app, schema }) => {
             ttl: 600, // in seconds
         },
         plugins: [
-            ApolloServerPluginDrainHttpServer({ httpServer }),
-            responseCachePlugin.default(),
-            logger
+            ApolloServerPluginDrainHttpServer({ httpServer }), // drain graphql when http server is close
+            responseCachePlugin.default(), // enable full response caching
+            logger, // logger
         ],
+        async onHealthCheck() {
+            if (everythingLooksHealthy()) {
+                return;
+            } else {
+                throw new Error('Errpr thrwon from heath check');
+            }
+        },
     })
 }
 
